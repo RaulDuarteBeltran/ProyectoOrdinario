@@ -16,6 +16,8 @@ namespace ProyectoOrdinario
         public FigurasCartasEnum Figura { get; }
         public ValoresCartasEnum Valor { get; }
         
-        //comentario prueba
+
+        //comentario de prueba
+
     }
 }
