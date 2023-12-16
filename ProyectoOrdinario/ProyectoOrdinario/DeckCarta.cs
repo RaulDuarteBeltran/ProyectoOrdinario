@@ -2,6 +2,8 @@ using ProyectoOrdinario;
 using ProyectoOrdinario.Enumeradores;
 using ProyectoOrdinario.Interfaces;
 using System;
+using System.Collections.Generic;
+
 public class DeckCarta : Carta
 {
     ICarta carta;
@@ -45,9 +47,7 @@ public class DeckCarta : Carta
     
     }
 
-    ICarta VerCarta(int indiceCarta){
-        return deck[indiceCarta];
-    }
+    ICarta VerCarta(int indiceCarta) => deck[indiceCarta];
 
     ICarta SacarCarta(int indiceCarta){
         ICarta carta = deck[indiceCarta];
