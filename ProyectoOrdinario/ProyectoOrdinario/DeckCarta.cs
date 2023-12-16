@@ -14,7 +14,7 @@ public class DeckCarta : Carta
         carta = new Carta(figura, valor);
     }
 
-    //public Carta[] obtenerDeck {get{ return deck;}}
+    public List<Carta> obtenerDeck {get{ return deck;}}
 
     public void CrearDeck()
     {
@@ -26,10 +26,10 @@ public class DeckCarta : Carta
             }
         }
 
-        BarajarCartas();
+        BarajearCartas();
     }
 
-    public void BarajarCartas()
+    public void BarajearCartas()
     {
         Random random = new Random();
         Carta cartaTemporal;
