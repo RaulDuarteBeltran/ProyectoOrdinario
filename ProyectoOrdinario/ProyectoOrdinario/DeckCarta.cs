@@ -1,27 +1,28 @@
 using ProyectoOrdinario;
 using ProyectoOrdinario.Enumeradores;
+using ProyectoOrdinario.Interfaces;
 using System;
 public class DeckCarta : Carta
 {
+    ICarta carta;
     const int NUMERO_CARTAS = 52;
-    private Carta[] deck;
-    
+    private List<Carta> deck;
+    int indiceCarta;
     public DeckCarta(FigurasCartasEnum figura, ValoresCartasEnum valor) : base(figura, valor)
     {
-        deck = new Carta[NUMERO_CARTAS];
+        deck = new List<Carta>();
+        carta = new Carta(figura, valor);
     }
 
-    public Carta[] obtenerDeck {get{ return deck;}}
+    //public Carta[] obtenerDeck {get{ return deck;}}
 
     public void CrearDeck()
     {
-        int i = 0;
         foreach (FigurasCartasEnum figura in Enum.GetValues(typeof(FigurasCartasEnum)))
         {
             foreach (ValoresCartasEnum valor in Enum.GetValues(typeof(ValoresCartasEnum)))
             {
-                deck[i] = new Carta(figura, valor);
-                i++;
+                deck.Add(new Carta(figura, valor));
             }
         }
 
@@ -31,14 +32,34 @@ public class DeckCarta : Carta
     public void BarajarCartas()
     {
         Random random = new Random();
-        Carta carta;
-        int numeroAleatorio;
-        for (int i = 0; i < 200; i++)
+        Carta cartaTemporal;
+        int indiceAleatorio;
+
+        for (int i = 0; i < NUMERO_CARTAS; i++)
         {
-            numeroAleatorio = random.Next(0, deck.Length);
-            carta = deck[i];
-            deck[i] = deck[numeroAleatorio];
-            deck[numeroAleatorio] = carta;
+            indiceAleatorio = random.Next(0, 52);
+            cartaTemporal = deck[i];
+            deck[i] = deck[indiceAleatorio];
+            deck[indiceAleatorio] = cartaTemporal;
         }
+    
+    }
+
+    ICarta VerCarta(int indiceCarta){
+        return deck[indiceCarta];
+    }
+
+    ICarta SacarCarta(int indiceCarta){
+        ICarta carta = deck[indiceCarta];
+        deck.RemoveAt(indiceCarta);
+        return carta;
+    }
+
+    void MeterCarta(ICarta carta){
+        deck.Add((Carta)carta);
+    }
+
+    void MeterCarta(List<ICarta> cartas){
+        deck.AddRange((IEnumerable<Carta>)cartas);
     }
 }
