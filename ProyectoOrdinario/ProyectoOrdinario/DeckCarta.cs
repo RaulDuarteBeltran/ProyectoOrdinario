@@ -2,15 +2,13 @@ using ProyectoOrdinario;
 using ProyectoOrdinario.Enumeradores;
 using ProyectoOrdinario.Interfaces;
 using System;
-using System.Collections.Generic;
-
 public class DeckCarta : Carta
 {
     ICarta carta;
     const int NUMERO_CARTAS = 52;
     private List<Carta> deck;
     int indiceCarta;
-    public DeckCarta(FigurasCartasEnum figura, ValoresCartasEnum valor) : base(figura, valor)
+    public DeckCarta(FigurasCartasEnum figura, ValoresCartasEnum valor) : base(figura, valor) //constructor
     {
         deck = new List<Carta>();
         carta = new Carta(figura, valor);
@@ -18,7 +16,7 @@ public class DeckCarta : Carta
 
     public List<Carta> obtenerDeck {get{ return deck;}}
 
-    public void CrearDeck()
+    public void CrearDeck() //Con esto se crean las 52 cartas del poker
     {
         foreach (FigurasCartasEnum figura in Enum.GetValues(typeof(FigurasCartasEnum)))
         {
@@ -31,7 +29,7 @@ public class DeckCarta : Carta
         BarajearCartas();
     }
 
-    public void BarajearCartas()
+    public void BarajearCartas() //Con este método se mezcla el orden de las cartas
     {
         Random random = new Random();
         Carta cartaTemporal;
@@ -47,19 +45,18 @@ public class DeckCarta : Carta
     
     }
 
-    ICarta VerCarta(int indiceCarta) => deck[indiceCarta];
+    ICarta VerCarta(int indiceCarta){ //Con este método se puede ver la carta que se encuentra en el indice que se le pase
+        return deck[indiceCarta];
+    }
 
-    ICarta SacarCarta(int indiceCarta){
+    ICarta SacarCarta(int indiceCarta){ //Con este método se puede sacar la carta que se encuentra en el indice que se le pase
         ICarta carta = deck[indiceCarta];
         deck.RemoveAt(indiceCarta);
         return carta;
     }
 
-    void MeterCarta(ICarta carta){
-        deck.Add((Carta)carta);
-    }
 
-    void MeterCarta(List<ICarta> cartas){
+    void MeterCarta(List<ICarta> cartas){ //Con este método se puede meter una carta al deck
         deck.AddRange((IEnumerable<Carta>)cartas);
     }
 }
