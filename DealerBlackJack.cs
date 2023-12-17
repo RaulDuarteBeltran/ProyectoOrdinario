@@ -3,11 +3,15 @@ using ProyectoOrdinario.Enumeradores;
 using ProyectoOrdinario.Interfaces;
 using System;
 
-public class DealerBlackJack : DeckCarta //Clase del dealer del juego BlackJack21
+public class DealerPoker	//Clase del dealer del juego Poker
 {
+    static void Main(string[] args)
+    {
+
+    }
+
     public void BarajearDeck() //Función para barajear el deck
     {
-        CrearDeck(); //Llamamos a que se cree el deck
 
         Random random = new Random;
         int n = DeckCarta.Count;
@@ -22,7 +26,7 @@ public class DealerBlackJack : DeckCarta //Clase del dealer del juego BlackJack2
 
     public void RepartirCartas() //Función para repartir las cartas del deck a los jugadores (en este caso no juega el dealer)
     {
-        int cartasPorJugador = 2; //Este es el numero de cartas por defecto del juego
+        int cartasPorJugador = 5; //Este es el numero de cartas por defecto del juego
 
         for (int i = 0; i < cartasPorJugador; i++)
         {
@@ -43,24 +47,11 @@ public class DealerBlackJack : DeckCarta //Clase del dealer del juego BlackJack2
                 }
             }
         }
-
-        public AnalizarMano() //El dealer revisa si tiene menos de 17 puntos para seguir jugando
-        {
-
-        }
-
-        public RecogerCartas() //Aqui el dealer come una carta del mazo
-        {
-
-        }
-
-        public CambiarCartaJugador() //Para intercambiar las cartas que el jugador quiere descartar y enviar a la pila de descartes
-        {
-
-        }
-
-        public TerminarJugada() //El dealer al tener mas de 16 puntos ya deja de jugar y guarda su jugada
-        {
-
-        }
     }
+
+    public void CambiarCartas() //Para intercambiar las cartas que el jugador quiere descartar y enviar a la pila de descartes
+    {
+        Mano.Add(Carta);
+    }
+}
+

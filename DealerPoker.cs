@@ -5,7 +5,13 @@ using System;
 
 public class DealerPoker	//Clase del dealer del juego Poker
 {
-    public BarajearDeck() //Función para barajear el deck
+    static void Main(string[] args)
+    {
+    
+    }
+
+
+    public void BarajearDeck() //Función para barajear el deck
     {
 
         Random random = new Random;
@@ -19,7 +25,7 @@ public class DealerPoker	//Clase del dealer del juego Poker
         }
     }
 
-    public RepartirCartas() //Función para repartir las cartas del deck a los jugadores (en este caso no juega el dealer)
+    public void RepartirCartas() //Función para repartir las cartas del deck a los jugadores (en este caso no juega el dealer)
     {
         int cartasPorJugador = 5; //Este es el numero de cartas por defecto del juego
 
@@ -44,8 +50,8 @@ public class DealerPoker	//Clase del dealer del juego Poker
         }
     }
 
-    public CambiarCartas() //Para intercambiar las cartas que el jugador quiere descartar y enviar a la pila de descartes
+    public void CambiarCartas() //Para intercambiar las cartas que el jugador quiere descartar y enviar a la pila de descartes
     {
-
+        Mano.Add(Carta);
     }
 }
