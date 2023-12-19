@@ -1,4 +1,5 @@
-﻿using ProyectoOrdinario.Interfaces;
+﻿using ProyectoOrdinario.Enumeradores;
+using ProyectoOrdinario.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProyectoOrdinario.Clases
 {
-    internal class DeckDeCartas: IDeckDeCartas
+    internal class DeckDeCartas : IDeckDeCartas
     {
         private List<ICarta> cartas;
+        private static Random random = new Random();
+
 
         public DeckDeCartas()
         {
@@ -19,7 +22,16 @@ namespace ProyectoOrdinario.Clases
 
         public void BarajearDeck()
         {
-            // Add code to shuffle the deck
+            // Barajar el mazo usando el algoritmo de Fisher-Yates
+            int n = cartas.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = random.Next(n + 1);
+                var value = cartas[k];
+                cartas[k] = cartas[n];
+                cartas[n] = value;
+            }
             Console.WriteLine("Deck is shuffled.");
         }
 
@@ -47,8 +59,13 @@ namespace ProyectoOrdinario.Clases
 
         private void InicializarDeck()
         {
-            // Add code to initialize the deck with cards
-            // For simplicity, let's assume a standard 52-card deck
+            foreach (FigurasCartasEnum figura in Enum.GetValues(typeof(FigurasCartasEnum)))
+            {
+                foreach (ValoresCartasEnum valor in Enum.GetValues(typeof(ValoresCartasEnum)))
+                {
+                    cartas.Add(new Carta(figura, valor));
+                }
+            }
             Console.WriteLine("Deck is initialized.");
         }
     }
